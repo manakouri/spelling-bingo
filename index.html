@@ -1,4 +1,75 @@
-const spellingData = [
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spelling Bingo Caller</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .word-card { transition: all 0.3s ease; }
+        @media print { .no-print { display: none; } }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen font-sans text-slate-900">
+
+    <div id="app" class="max-w-5xl mx-auto p-4 md:p-8">
+        <header class="text-center mb-8 no-print">
+            <h1 class="text-4xl font-bold text-indigo-600 mb-2">Spelling Bingo Caller</h1>
+            <p class="text-slate-600">Select patterns, pick your words, and play!</p>
+        </header>
+
+        <section id="setup-section" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-8 no-print">
+            <h2 class="text-xl font-semibold mb-4 flex items-center">
+                <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm">1</span>
+                Select Spelling Patterns
+            </h2>
+            <div id="pattern-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-6">
+                </div>
+            <button onclick="generateWordPool()" class="w-full md:w-auto px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow-md transition">
+                Generate 40-Word List
+            </button>
+        </section>
+
+        <section id="list-section" class="hidden bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 no-print">
+                <div>
+                    <h2 class="text-xl font-semibold">
+                        <span class="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm inline-flex">2</span>
+                        Student Word Pool
+                    </h2>
+                    <p class="text-sm text-slate-500 mt-1">Students: Choose 16 words from this list for your 4x4 grid.</p>
+                </div>
+                <button onclick="startGame()" class="mt-4 md:mt-0 px-6 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg transition">
+                    Start Calling Words →
+                </button>
+            </div>
+            
+            <div id="word-pool-display" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-2 border-t pt-4">
+                </div>
+        </section>
+
+        <section id="game-section" class="hidden grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div class="lg:col-span-3 bg-white p-12 rounded-2xl shadow-xl border-4 border-indigo-100 text-center">
+                <div class="mb-4 text-indigo-400 font-mono text-sm uppercase tracking-widest" id="counter">Word 0 / 40</div>
+                <div id="current-word" class="text-6xl md:text-8xl font-black text-slate-800 my-12 min-h-[120px] flex items-center justify-center tracking-tight">
+                    READY?
+                </div>
+                <button id="next-btn" onclick="drawNextWord()" class="px-12 py-6 bg-indigo-600 hover:bg-indigo-700 text-white text-2xl font-bold rounded-2xl shadow-lg transform active:scale-95 transition">
+                    Next Word
+                </button>
+            </div>
+
+            <div class="bg-slate-800 rounded-2xl p-6 text-white shadow-xl">
+                <h3 class="text-lg font-bold mb-4 pb-2 border-b border-slate-700 text-indigo-300">History</h3>
+                <ul id="history-list" class="space-y-2 max-h-[400px] overflow-y-auto pr-2 text-lg">
+                    <li class="text-slate-500 italic text-sm">No words called yet...</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const spellingData = [
             { id: "s3a", title: "Short 'a'", words: ["cat", "map", "fan", "sad", "bag", "apple", "ant", "catch", "magic", "fantastic", "habit", "jacket", "magnet", "rabbit", "sandal", "banner", "cabin", "dragon", "gallon", "planet", "stamp", "batter", "clapper", "mansion"] },
             { id: "s3e", title: "Short 'e'", words: ["bed", "ten", "red", "leg", "pen", "tent", "best", "seven", "letter", "empty", "better", "helmet", "melon", "never", "pebble", "second", "velvet", "yellow", "kettle", "dental", "fender", "lesson", "member", "sender"] },
             { id: "s3i", title: "Short 'i'", words: ["bit", "sit", "pin", "rim", "win", "lid", "hip", "tin", "dig", "inside", "invite", "insect", "simple", "sister", "finish", "limit", "minute", "village", "visit", "picnic", "window", "kitchen", "cabin", "ticket"] },
@@ -121,3 +192,6 @@ const spellingData = [
         }
 
         init();
+    </script>
+</body>
+</html>
