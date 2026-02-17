@@ -151,7 +151,11 @@
             // Display words alphabetically for the kids to copy (forced lowercase)
             const displayPool = [...selectedPool].sort();
             const container = document.getElementById('word-pool-display');
-            container.innerHTML = displayPool.map(w => `<div class="p-2 border rounded text-center text-sm bg-slate-50 lowercase font-semibold">${w}</div>`).join('');
+            container.innerHTML = displayPool.map(w => `
+    <div class="p-6 border-2 border-slate-200 rounded-xl text-center text-2xl md:text-3xl bg-slate-50 lowercase font-bold text-slate-700 shadow-sm">
+        ${w}
+    </div>
+`).join('');
             
             document.getElementById('list-section').classList.remove('hidden');
             document.getElementById('list-section').scrollIntoView({behavior: 'smooth'});
