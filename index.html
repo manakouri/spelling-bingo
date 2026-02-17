@@ -234,6 +234,27 @@
 
         // Run on load
         init();
+        
+        function goHome() {
+    // Confirmation check so you don't accidentally quit a game
+    if (!document.getElementById('game-section').classList.contains('hidden')) {
+        if (!confirm("Are you sure you want to quit the current game and return to setup?")) {
+            return;
+        }
+    }
+
+    // Reset visibility
+    document.getElementById('setup-section').classList.remove('hidden');
+    document.getElementById('list-section').classList.add('hidden');
+    document.getElementById('game-section').classList.add('hidden');
+    
+    // Clear the current pool and history
+    selectedPool = [];
+    history = [];
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
     </script>
 </body>
 </html>
